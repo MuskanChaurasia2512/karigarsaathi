@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KarigarSaathi | The Platform for Craftsmen and Shops</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-100 p-4 min-h-screen flex items-center justify-center text-gray-800">
+
+    <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-gray-200 text-center">
+
+        <!-- Main Title and Description -->
+        <header class="mb-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-green-800 flex items-center justify-center mb-4">
+                <i class="fas fa-hammer mr-3 text-green-600"></i> KarigarSaathi
+            </h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Your unified platform to connect with jobs, manage tools, and grow your business.
+                Please select your user category to get started.
+            </p>
+        </header>
+
+        <!-- User Category Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <!-- Employee / Artisan Card -->
+            <div class="card p-6 rounded-2xl bg-blue-50 hover:bg-blue-100 transition-all duration-300 shadow-md cursor-pointer" data-user-type="employee">
+                <i class="fas fa-hard-hat text-5xl text-blue-600 mb-4"></i>
+                <h2 class="text-2xl font-bold text-blue-800 mb-2">Employee / Artisan</h2>
+                <p class="text-blue-700 text-sm mb-4">
+                    Find jobs, apply for work, and manage your profile.
+                </p>
+            </div>
+
+            <!-- Supplier / Shop Card -->
+            <div class="card p-6 rounded-2xl bg-purple-50 hover:bg-purple-100 transition-all duration-300 shadow-md cursor-pointer" data-user-type="supplier">
+                <i class="fas fa-store text-5xl text-purple-600 mb-4"></i>
+                <h2 class="text-2xl font-bold text-purple-800 mb-2">Supplier / Shop</h2>
+                <p class="text-purple-700 text-sm mb-4">
+                    Post jobs, find skilled workers, and manage your business.
+                </p>
+            </div>
+
+            <!-- Rental Shop Card -->
+            <div class="card p-6 rounded-2xl bg-green-50 hover:bg-green-100 transition-all duration-300 shadow-md cursor-pointer" data-user-type="rental-shop">
+                <i class="fas fa-tools text-5xl text-green-600 mb-4"></i>
+                <h2 class="text-2xl font-bold text-green-800 mb-2">Rental Shop</h2>
+                <p class="text-green-700 text-sm mb-4">
+                    List your tools for rent and manage your inventory.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="mt-8">
+            <a href="login.html" class="inline-block bg-blue-600 text-white py-3 px-8 rounded-xl shadow-md hover:bg-blue-700 transition-all duration-200 font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Already have an account? Log In
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Message Modal -->
+    <div id="message-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50 transition-opacity duration-300">
+        <div class="bg-white p-6 rounded-3xl shadow-2xl max-w-sm w-full mx-4 transform transition-transform duration-300 scale-95">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="message-title" class="text-xl font-bold text-gray-800"></h3>
+                <button id="close-modal" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p id="message-body" class="text-gray-600 mb-4"></p>
+            <div class="flex justify-end">
+                <button id="modal-ok-button" class="bg-green-600 text-white py-2 px-4 rounded-xl hover:bg-green-700 transition-colors">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userCards = document.querySelectorAll('.card');
+            
+            userCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const userType = card.dataset.userType;
+                    // Redirect to the appropriate registration page based on user type
+                    window.location.href = `${userType}-register.html`;
+                });
+            });
+
+            // Message modal functionality (copy-pasted for consistency)
+            const messageModal = document.getElementById('message-modal');
+            const messageTitle = document.getElementById('message-title');
+            const messageBody = document.getElementById('message-body');
+            const closeModalButton = document.getElementById('close-modal');
+            const modalOkButton = document.getElementById('modal-ok-button');
+
+            function hideMessage() {
+                messageModal.classList.add('hidden');
+                messageModal.classList.remove('flex');
+            }
+            
+            closeModalButton.addEventListener('click', hideMessage);
+            modalOkButton.addEventListener('click', hideMessage);
+        });
+    </script>
+</body>
+</html>
